@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #9face6);
+            background: linear-gradient(135deg, #ffffff, #ffffff);
             text-align: center;
             margin: 0;
             padding: 0;
@@ -15,21 +15,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
             background-color: #fff;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
             width: 100%;
             max-width: 450px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         h2 {
             font-size: 24px;
             margin-bottom: 20px;
             color: #333;
+            transition: color 0.3s ease;
         }
 
         .warning {
@@ -37,14 +43,14 @@
             color: #d9534f;
             font-weight: bold;
             margin-bottom: 15px;
-            visibility: visible; /* По умолчанию видна */
+            visibility: visible;
             opacity: 1;
-            transition: opacity 0.5s ease-out, visibility 0s 0.5s; /* Плавное исчезновение */
+            transition: opacity 0.5s ease-out, visibility 0s 0.5s;
         }
 
         .warning.hidden {
-            visibility: hidden; /* Скрыть элемент */
-            opacity: 0; /* Сделать его прозрачным */
+            visibility: hidden;
+            opacity: 0;
         }
 
         label {
@@ -140,13 +146,81 @@
             font-weight: bold;
             color: #333;
         }
+
+        /* Тёмная тема */
+        .dark-theme {
+            background: linear-gradient(135deg, #202020, #202020);
+            color: #fff;
+        }
+
+        .dark-theme .container {
+            background-color: #202020;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-theme .warning {
+            color: #f0ad4e;
+        }
+
+        .dark-theme label, .dark-theme input {
+            color: #ddd;
+        }
+
+        .dark-theme input {
+            background-color: #303030;
+            border: 1px solid #777;
+        }
+
+        .dark-theme button {
+            background-color: #0069d9;
+        }
+
+        .dark-theme .result-box {
+            background-color: #666;
+            color: #fff;
+        }
+
+        /* Светлый цвет для заголовка в тёмной теме */
+        .dark-theme h2 {
+            color: #fff;
+        }
+
+        /* Кнопка переключения темы */
+        #themeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        #themeToggle:hover {
+            background-color: #0056b3;
+        }
+
+        /* Кнопка "Рассчитать" в тёмной теме по умолчанию остаётся серой */
+        .dark-theme button:disabled {
+            background-color: #555;
+        }
+
     </style>
 </head>
 <body>
+    <button id="themeToggle" onclick="toggleTheme()">🌙</button>
     <div class="container">
-        <h2>Тимур великий трейдер</h2>
+        <h2>Калькулятор объёма входа</h2>
 
-        <!-- Предупреждение перед выбором типа сделки -->
         <div id="warningText" class="warning">Выберите тип сделки</div>
 
         <div class="position-buttons">
@@ -155,16 +229,16 @@
         </div>
 
         <label>Депозит ($):</label>
-        <input type="number" id="deposit" placeholder="Введите депозит" min="0" disabled>
+        <input type="number" id="deposit" placeholder="Выберите тип сделки" min="0" disabled>
         
         <label>Риск (% от депозита):</label>
-        <input type="number" id="risk" placeholder="Введите риск в %" step="0.01" min="0" disabled>
+        <input type="number" id="risk" placeholder="Выберите тип сделки" step="0.01" min="0" disabled>
         
         <label>Цена входа ($):</label>
-        <input type="number" id="entryPrice" placeholder="Введите цену входа" min="0" disabled>
+        <input type="number" id="entryPrice" placeholder="Выберите тип сделки" min="0" disabled>
         
         <label>Цена стоп-лосса ($):</label>
-        <input type="number" id="stopLoss" placeholder="Введите стоп-лосс" min="0" disabled>
+        <input type="number" id="stopLoss" placeholder="Выберите тип сделки" min="0" disabled>
         
         <button id="calculateButton" onclick="calculateVolume()" disabled>Рассчитать</button>
         
@@ -173,17 +247,32 @@
 
     <script>
         let positionType = '';
+        let isDarkTheme = false;
 
         function setPosition(type) {
             positionType = type;
             document.getElementById('longButton').classList.toggle('active', type === 'long');
             document.getElementById('shortButton').classList.toggle('active', type === 'short');
 
-            // Разблокируем поля ввода и кнопку "Рассчитать"
-            document.querySelectorAll("input").forEach(input => input.disabled = false);
+            document.querySelectorAll("input").forEach(input => {
+                input.disabled = false;
+                input.placeholder = ''; // Убираем дефолтное сообщение
+            });
             document.getElementById("calculateButton").disabled = false;
 
-            // Скрываем надпись "Выберите тип сделки" с анимацией
+            // Задаем дефолтные значения для лонга и шорта
+            if (type === 'long') {
+                document.getElementById("deposit").placeholder = 'Какой у вас депозит ?';
+                document.getElementById("risk").placeholder = 'укажите процент (например 2)';
+                document.getElementById("entryPrice").placeholder = 'Введите цену входа в сделку';
+                document.getElementById("stopLoss").placeholder = 'Введите цену стоп-лосса';
+            } else if (type === 'short') {
+                document.getElementById("deposit").placeholder = 'Какой у вас депозит ?';
+                document.getElementById("risk").placeholder = 'укажите процент (например 2)';
+                document.getElementById("entryPrice").placeholder = 'Введите цену входа в сделку';
+                document.getElementById("stopLoss").placeholder = 'Введите цену стоп-лосса';
+            }
+
             document.getElementById("warningText").classList.add("hidden");
         }
 
@@ -223,6 +312,17 @@
             const volumeInDollars = positionSize * entryPrice;
 
             document.getElementById("result").innerText = `Объём входа: $${volumeInDollars.toFixed(2)}`;
+        }
+
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            if (isDarkTheme) {
+                document.body.classList.add('dark-theme');
+                document.getElementById('themeToggle').innerText = '☀️';  // Изменение иконки на "Солнышко"
+            } else {
+                document.body.classList.remove('dark-theme');
+                document.getElementById('themeToggle').innerText = '🌙';  // Изменение иконки на "Луну"
+            }
         }
     </script>
 </body>
