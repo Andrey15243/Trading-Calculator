@@ -251,7 +251,7 @@ input:checked + .slider:before {
 }
 
 .slider .left-icon {
-    left: 8px;
+    left: 6px;
     opacity: 1;
 }
 
