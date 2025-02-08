@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор объёма входа</title>
+    <title id="calculatorTitle" data-lang="calculatorTitle">Калькулятор объёма входа</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,33 +16,69 @@
             </span>
         </label>
     </div>
+    
+    <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown()" id="menuTitle">≣</button>
+        <div class="dropdown-content" id="myDropdown">
+            
+            <!-- Подменю валют -->
+            <div class="submenu">
+                <button class="submenu-btn" onclick="toggleSubmenu('currencySubmenu')" id="currencyTitle" data-lang="currencySubmenu">Основная валюта ▾</button>
+                <div class="submenu-content" id="currencySubmenu">
+                    <a href="#" onclick="changeCurrency('$')" id="currencyUsd" data-lang="usd">Доллары ($)</a>
+                    <a href="#" onclick="changeCurrency('₽')" id="currencyRub" data-lang="rub">Рубли (₽)</a>
+                    <a href="#" onclick="changeCurrency('€')" id="currencyEur" data-lang="eur">Евро (€)</a>
+                    <a href="#" onclick="changeCurrency('¥')" id="currencyJpy" data-lang="jpy">Японская йена (¥)</a>
+                </div>
+            </div>
+
+            <!-- Подменю языков -->
+            <div class="submenu">
+                <button class="submenu-btn" onclick="toggleSubmenu('languageSubmenu')" id="languageTitle" data-lang="languageSubmenu">Язык ▾</button>
+                <div class="submenu-content" id="languageSubmenu">
+                    <a href="#" onclick="changeLanguage('ru')" id="languageRu" data-lang="ru">Русский</a>
+                    <a href="#" onclick="changeLanguage('en')" id="languageEn" data-lang="en">English</a>
+                </div>
+            </div>
+
+            <!-- Подменю темы -->
+            <div class="submenu">
+                <button class="submenu-btn" onclick="toggleSubmenu('themeSubmenu')" id="themeTitle" data-lang="themeSubmenu">Тема ▾</button>
+                <div class="submenu-content" id="themeSubmenu">
+                    <a href="#" onclick="applyTheme('light')" id="lightTheme" data-lang="lightTheme">Светлая</a>
+                    <a href="#" onclick="applyTheme('dark')" id="darkTheme" data-lang="darkTheme">Тёмная</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <div class="container">
-        <h2>Калькулятор объёма входа</h2>
 
-        <div id="warningText" class="warning hidden">Выберите тип сделки</div>
+        <h2 id="calculatorTitle" data-lang="calculatorTitle">Калькулятор объёма входа</h2>
+        <div id="warningText" class="warning hidden" data-lang="warningText">Выберите тип сделки</div>
 
         <div class="position-buttons">
-            <button id="longButton" onclick="setPosition('long')">Лонг</button>
-            <button id="shortButton" onclick="setPosition('short')">Шорт</button>
+            <button id="longButton" onclick="setPosition('long')" data-lang="long">Лонг</button>
+            <button id="shortButton" onclick="setPosition('short')" data-lang="short">Шорт</button>
         </div>
 
-        <label>Депозит ($):</label>
+        <label id="depositLabel" data-lang="depositLabel">Депозит <span class="currency-symbol">₽</span>:</label>
         <input type="number" id="deposit" placeholder="Введите депозит" min="0">
         
-        <label>Риск (% от депозита):</label>
+        <label id="riskLabel" data-lang="riskLabel">Риск (% от депозита):</label>
         <input type="number" id="risk" placeholder="Введите риск (%)" step="0.01" min="0">
         
-        <label>Цена входа ($):</label>
+        <label id="entryPriceLabel" data-lang="entryPriceLabel">Цена входа <span class="currency-symbol">₽</span>:</label>
         <input type="number" id="entryPrice" placeholder="Введите цену входа" min="0">
         
-        <label>Цена стоп-лосса ($):</label>
+        <label id="stopLossLabel" data-lang="stopLossLabel">Цена стоп-лосса <span class="currency-symbol">₽</span>:</label>
         <input type="number" id="stopLoss" placeholder="Введите цену стоп-лосса" min="0">
         
-        <button id="calculateButton" onclick="calculateVolume()">Рассчитать</button>
-        <button id="resetButton" onclick="resetForm()">Сбросить</button>
+        <button id="calculateButton" onclick="calculateVolume()" data-lang="calculateButton">Рассчитать</button>
+        <button id="resetButton" onclick="resetForm()" data-lang="resetButton">Сбросить</button>
         
-        <div class="result-box" id="result">Ожидание данных...</div>
+        <div class="result-box" id="result" data-lang="result">Ожидание данных...</div>
     </div>
 
     <script src="script.js"></script>
