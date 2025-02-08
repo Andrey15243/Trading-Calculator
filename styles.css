@@ -112,8 +112,8 @@ button:disabled {
     cursor: not-allowed;
 }
 
-button:hover:enabled {
-    background-color: #0056b3;
+button:active:enabled {
+    filter: brightness(0.6);
 }
 
 .result-box {
@@ -193,6 +193,51 @@ body.dark-theme #longButton {
     right: 10px;
 }
 
+/* Стили для кнопки, фиксируем её на экране */
+.dropdown {
+    position: fixed; /* Фиксированное положение */
+    top: 1px; /* Расстояние от верхнего края */
+    left: 10px; /* Расстояние от левого края */
+    z-index: 1000; /* Чтобы кнопка была поверх других элементов */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropbtn {
+    background-color: #ccc;
+    color: white;
+    padding: 2px 10px; /* Изменены отступы (высота и ширина кнопки) */
+    font-size: 18px; /* Увеличен шрифт */
+    border: none;
+    cursor: pointer;
+    border-radius: px; /* Закругленные углы */
+}
+
+/* Стили для валютных символов */
+.currency-symbol {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Стили для кнопки выбора валюты */
 .theme-switch {
     position: relative;
     display: inline-block;
@@ -280,3 +325,132 @@ input:checked + .slider .left-icon {
     background-color: #e64a19;
 }
 
+/* Стили для подменю */
+.submenu {
+    position: relative;
+}
+
+.submenu-btn {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 12px 16px;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    display: block;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.submenu-btn:hover {
+    background-color: #f1f1f1;
+}
+
+/* Скрытое подменю */
+.submenu-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 160px;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.submenu-content a {
+    padding: 12px 16px;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.submenu-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Активирование подменю */
+.submenu:hover .submenu-content {
+    display: block;
+}
+
+/* Подменю и его элементы в тёмной теме */
+body.dark-theme .submenu-content {
+    display: none; /* Подменю по умолчанию скрыто */
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 160px;
+    background-color: #333; /* Обеспечиваем тёмный фон подменю */
+    color: #ddd; /* Светлый текст */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* Пункты подменю в тёмной теме */
+body.dark-theme .submenu-content a {
+    background-color: #333; /* Убедимся, что фон пункта подменю тёмный */
+    color: #ddd; /* Текст светлый */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Пункт подменю при наведении */
+body.dark-theme .submenu-content a:hover {
+    background-color: #444; /* Темнеет при наведении */
+    color: #fff; /* Текст белый при наведении */
+}
+
+/* Кнопка подменю в тёмной теме */
+body.dark-theme .submenu-btn {
+    background-color: #444; /* Тёмный фон */
+    color: #ddd; /* Светлый текст */
+    padding: 12px 16px;
+    text-align: left;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    display: block;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Кнопка подменю при наведении */
+body.dark-theme .submenu-btn:hover {
+    background-color: #555; /* Темнеет при наведении */
+}
+
+/* Показать подменю при наведении на родительский элемент */
+body.dark-theme .submenu:hover .submenu-content {
+    display: block; /* Показываем подменю */
+}
+
+/* Изменения для самого меню и всех его частей */
+body.dark-theme .dropdown-content {
+    background-color: #444; /* Фон для всех элементов в подменю */
+    color: #ddd; /* Светлый текст */
+}
+
+/* Подменю в светлой теме тоже корректно */
+body:not(.dark-theme) .submenu-content {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Пункт подменю в светлой теме */
+body:not(.dark-theme) .submenu-content a {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+body:not(.dark-theme) .submenu-content a:hover {
+    background-color: #f1f1f1;
+    color: #000;
+}
