@@ -262,7 +262,7 @@ input:checked + .slider:before {
 
 input:checked + .slider .right-icon {
     opacity: 1;
-    transform: translateX(26px) translateY(-11px);
+    transform: translateX(26px) translateY(-14px);
 }
 
 input:checked + .slider .left-icon {
