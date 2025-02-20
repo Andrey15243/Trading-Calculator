@@ -291,7 +291,7 @@ input:checked + .slider:before {
     position: absolute;
     top: 20%;
     transform: translateY(0%);
-    font-size: 16px;
+    font-size: 6px;
     transition: 0.4s;
 }
 
