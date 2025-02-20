@@ -296,11 +296,13 @@ input:checked + .slider:before {
 }
 
 .slider .left-icon {
+    top: 7px;
     left: 9px;
     opacity: 1;
 }
 
 .slider .right-icon {
+    top: 7px;
     right: 34px;
     opacity: 0;
 }
