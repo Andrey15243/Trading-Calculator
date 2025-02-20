@@ -289,14 +289,14 @@ input:checked + .slider:before {
 
 .slider .left-icon, .slider .right-icon {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
+    top: 20%;
+    transform: translateY(0%);
+    font-size: 16px;
     transition: 0.4s;
 }
 
 .slider .left-icon {
-    left: 6px;
+    left: 9px;
     opacity: 1;
 }
 
@@ -307,12 +307,12 @@ input:checked + .slider:before {
 
 input:checked + .slider .right-icon {
     opacity: 1;
-    transform: translateX(28px) translateY(-14px);
+    transform: translateX(25px) translateY(0px);
 }
 
 input:checked + .slider .left-icon {
     opacity: 0;
-    transform: translateX(26px) translateY(-12px);
+    transform: translateX(25px) translateY(0px);
 }
 
 /* Кнопка сброса */
