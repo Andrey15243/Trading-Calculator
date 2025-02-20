@@ -21,7 +21,7 @@ const translations = {
         "rub": "RUB",
         "eur": "EUR",
         "jpy": "JPY",
-        "depositPlaceholder": "Enter your deposit",
+        "depositPlaceholder": "Enter deposit",
         "riskPlaceholder": "Enter risk (no % sign)",
         "entryPricePlaceholder": "Enter entry price",
         "stopLossPlaceholder": "Enter stop loss price"
@@ -47,7 +47,7 @@ const translations = {
         "rub": "RUB",
         "eur": "EUR",
         "jpy": "JPY",
-        "depositPlaceholder": "Введите свой депозит",
+        "depositPlaceholder": "Введите депозит",
         "riskPlaceholder": "Введите риск (без знака %)",
         "entryPricePlaceholder": "Введите цену входа",
         "stopLossPlaceholder": "Введите цену стоп-лосса"
@@ -65,7 +65,12 @@ let language = localStorage.getItem('language') || 'ru'; // Язык по умо
 function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
     localStorage.setItem('theme', theme);
-    document.getElementById('themeSwitch').checked = (theme === 'dark');
+    
+    // Проверяем, существует ли элемент с id 'themeSwitch' перед изменением его состояния
+    const themeSwitch = document.getElementById('themeSwitch');
+    if (themeSwitch) {
+        themeSwitch.checked = (theme === 'dark');
+    }
 }
 
 // Функция для переключения языка
@@ -132,11 +137,11 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (ev
     }
 });
 
-// Функция для переключения темы
-function toggleTheme() {
-    let newTheme = document.getElementById('themeSwitch').checked ? 'dark' : 'light';
-    applyTheme(newTheme);
-}
+// // Функция для переключения темы
+// function toggleTheme() {
+//     let newTheme = document.getElementById('themeSwitch').checked ? 'dark' : 'light';
+//     applyTheme(newTheme);
+// }
 
 // Функция для выбора валюты
 function changeCurrency(symbol) {
@@ -251,10 +256,10 @@ document.getElementById("currencyRub").addEventListener("click", () => changeCur
 document.getElementById("currencyEur").addEventListener("click", () => changeCurrency('€'));
 document.getElementById("currencyJpy").addEventListener("click", () => changeCurrency('¥'));
 
-// Слушатели для элементов меню (рынок)
-document.getElementById("marketCrypto").addEventListener("click", () => changeMarket('crypto'));
-document.getElementById("marketStocks").addEventListener("click", () => changeMarket('stocks'));
-document.getElementById("marketForex").addEventListener("click", () => changeMarket('forex'));
+// // Слушатели для элементов меню (рынок)
+// document.getElementById("marketCrypto").addEventListener("click", () => changeMarket('crypto'));
+// document.getElementById("marketStocks").addEventListener("click", () => changeMarket('stocks'));
+// document.getElementById("marketForex").addEventListener("click", () => changeMarket('forex'));
 
-// Инициализация кнопки переключения темы
-document.getElementById("themeSwitch").addEventListener("change", toggleTheme);
+// // Инициализация кнопки переключения темы
+// document.getElementById("themeSwitch").addEventListener("change", toggleTheme);
