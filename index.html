@@ -55,7 +55,7 @@
 
     <div class="container">
 
-        <h2 id="calculatorTitle" data-lang="calculatorTitle">Калькулятор объёма входа</h2>
+        <!-- <h2 id="calculatorTitle" data-lang="calculatorTitle">Калькулятор объёма входа</h2> -->
         <div id="warningText" class="warning hidden" data-lang="warningText">Выберите тип сделки</div>
 
         <div class="position-buttons">
@@ -64,10 +64,10 @@
         </div>
 
         <label id="depositLabel" data-lang="depositLabel">Депозит <span class="currency-symbol">₽</span>:</label>
-        <input type="number" id="deposit" placeholder="Введите депозит" min="0">
+        <input type="number" id="deposit" placeholder="Какой у вас депозит ?" min="0">
         
         <label id="riskLabel" data-lang="riskLabel">Риск (% от депозита):</label>
-        <input type="number" id="risk" placeholder="Введите риск (%)" step="0.01" min="0">
+        <input type="number" id="risk" placeholder="Введите риск (без знака %)" step="0.01" min="0">
         
         <label id="entryPriceLabel" data-lang="entryPriceLabel">Цена входа <span class="currency-symbol">₽</span>:</label>
         <input type="number" id="entryPrice" placeholder="Введите цену входа" min="0">
@@ -80,6 +80,21 @@
         
         <div class="result-box" id="result" data-lang="result">Ожидание данных...</div>
     </div>
+
+    <!-- Контейнер для TradingView виджета -->
+    <div id="tradingView" class="tradingview-widget-container">
+        <iframe 
+            src="https://www.tradingview.com/widgetembed/?symbol=BYBIT%3ABTCUSDT.P&interval=D&hidesidetoolbar=0&symboledit=1&theme=light&toolbar_bg=transparent&enable_publishing=true&allow_symbol_change=true"
+
+            allowtransparency="true" scrolling="no">
+        </iframe>
+    </div>
+
+    <div class="button-container">
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+    </div>    
+    
 
     <script src="script.js"></script>
 </body>
