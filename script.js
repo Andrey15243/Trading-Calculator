@@ -322,3 +322,46 @@ function toggleSubmenu(submenuId) {
         submenu.style.display = "block"; // Открыть, если оно закрыто
     }
 }
+
+// Переключение подменю
+function toggleSubmenu(submenuId) {
+    var submenu = document.getElementById(submenuId);
+    
+    // Если подменю не открыто, то открываем его
+    if (submenu.style.display !== "block") {
+        submenu.style.display = "block";
+    } else {
+        submenu.style.display = "none"; // Закрываем подменю, если оно уже открыто
+    }
+
+    // Закрываем все другие подменю, кроме того, которое мы открыли
+    var allSubmenus = document.querySelectorAll('.submenu-content');
+    allSubmenus.forEach(function(item) {
+        if (item !== submenu) {
+            item.style.display = "none"; // Закрываем остальные
+        }
+    });
+}
+
+// Функция для закрытия всего меню после выбора подменю
+function closeMenu() {
+    var menu = document.getElementById("myDropdown");
+    menu.style.display = "none";  // Закрыть основное меню
+}
+
+// Обработчик для кликов по подменю
+document.querySelectorAll('.submenu-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+        closeMenu();  // Закрыть меню после выбора подменю
+    });
+});
+
+// Открытие и закрытие основного меню
+function toggleDropdown() {
+    var menu = document.getElementById("myDropdown");
+    if (menu.style.display === "block") {
+        menu.style.display = "none";  // Закрыть меню, если оно открыто
+    } else {
+        menu.style.display = "block";  // Открыть меню, если оно закрыто
+    }
+}
