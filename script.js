@@ -21,7 +21,7 @@ const translations = {
         "rub": "RUB",
         "eur": "EUR",
         "jpy": "JPY",
-        "depositPlaceholder": "Enter deposit",
+        "depositPlaceholder": "What's your deposit ?",
         "riskPlaceholder": "Enter risk (no % sign)",
         "entryPricePlaceholder": "Enter entry price",
         "stopLossPlaceholder": "Enter stop loss price"
@@ -47,7 +47,7 @@ const translations = {
         "rub": "RUB",
         "eur": "EUR",
         "jpy": "JPY",
-        "depositPlaceholder": "Введите депозит",
+        "depositPlaceholder": "Какой у вас депозит ?",
         "riskPlaceholder": "Введите риск (без знака %)",
         "entryPricePlaceholder": "Введите цену входа",
         "stopLossPlaceholder": "Введите цену стоп-лосса"
