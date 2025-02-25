@@ -323,45 +323,69 @@ function toggleSubmenu(submenuId) {
     }
 }
 
-// Переключение подменю
-function toggleSubmenu(submenuId) {
-    var submenu = document.getElementById(submenuId);
-    
-    // Если подменю не открыто, то открываем его
-    if (submenu.style.display !== "block") {
-        submenu.style.display = "block";
-    } else {
-        submenu.style.display = "none"; // Закрываем подменю, если оно уже открыто
-    }
-
-    // Закрываем все другие подменю, кроме того, которое мы открыли
-    var allSubmenus = document.querySelectorAll('.submenu-content');
-    allSubmenus.forEach(function(item) {
-        if (item !== submenu) {
-            item.style.display = "none"; // Закрываем остальные
+// Закрытие меню при клике вне его
+window.onclick = function(event) {
+    // Проверяем, что клик не был по кнопке подменю или элементам внутри подменю
+    if (!event.target.closest('.dropdown-content') && !event.target.closest('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
         }
-    });
+    }
 }
 
-// Функция для закрытия всего меню после выбора подменю
-function closeMenu() {
-    var menu = document.getElementById("myDropdown");
-    menu.style.display = "none";  // Закрыть основное меню
+// Функция для закрытия подменю и основного меню
+function closeSubmenu() {
+    // Скрываем все подменю
+    var allSubmenus = document.querySelectorAll('.submenu-content');
+    allSubmenus.forEach(function(submenu) {
+        submenu.style.display = "none"; // Скрыть все подменю
+    });
+    
+    // Скрываем основное меню
+    var mainMenu = document.getElementById("myDropdown");
+    if (mainMenu) {
+        mainMenu.style.display = "none"; // Скрыть основное меню
+    }
 }
 
-// Обработчик для кликов по подменю
-document.querySelectorAll('.submenu-item').forEach(function(item) {
-    item.addEventListener('click', function() {
-        closeMenu();  // Закрыть меню после выбора подменю
-    });
+// Слушатели для выбора валюты
+document.getElementById("currencyUsd").addEventListener("click", function() {
+    changeCurrency('$');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
+document.getElementById("currencyRub").addEventListener("click", function() {
+    changeCurrency('₽');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
+document.getElementById("currencyEur").addEventListener("click", function() {
+    changeCurrency('€');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
+document.getElementById("currencyJpy").addEventListener("click", function() {
+    changeCurrency('¥');
+    closeSubmenu();  // Закрываем подменю и основное меню
 });
 
-// Открытие и закрытие основного меню
-function toggleDropdown() {
-    var menu = document.getElementById("myDropdown");
-    if (menu.style.display === "block") {
-        menu.style.display = "none";  // Закрыть меню, если оно открыто
-    } else {
-        menu.style.display = "block";  // Открыть меню, если оно закрыто
-    }
-}
+// Слушатели для выбора языка
+document.getElementById("languageRu").addEventListener("click", function() {
+    changeLanguage('ru');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
+document.getElementById("languageEn").addEventListener("click", function() {
+    changeLanguage('en');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
+
+// Слушатели для выбора темы
+document.getElementById("lightTheme").addEventListener("click", function() {
+    applyTheme('light');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
+document.getElementById("darkTheme").addEventListener("click", function() {
+    applyTheme('dark');
+    closeSubmenu();  // Закрываем подменю и основное меню
+});
