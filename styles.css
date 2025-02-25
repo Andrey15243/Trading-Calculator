@@ -22,6 +22,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: block;
 }
 
 h2 {
@@ -297,7 +298,6 @@ input:checked + .slider:before {
 
 .slider .left-icon, .slider .right-icon {
     position: absolute;
-    top: 20%;
     transform: translateY(0%);
     font-size: 16px;
     transition: 0.4s;
@@ -463,4 +463,71 @@ body:not(.dark-theme) .submenu-content a {
 body:not(.dark-theme) .submenu-content a:hover {
     background-color: #f1f1f1;
     color: #000;
+}
+
+
+/* Кнопки снизу экрана */
+
+.button-container {
+    display: flex;
+    justify-content: space-between;  /* Распределяет кнопки на всю доступную ширину */
+    position: fixed;
+    bottom: 10px;
+    left: 10px;  /* Отступ от левого края */
+    right: 10px;  /* Отступ от правого края */
+    padding: 0 20px; /* Отступы между кнопками и краями экрана */
+    gap: 40px;  /* Устанавливает расстояние между кнопками */
+}
+
+.btn {
+    padding: 8px 20px; /* Размер кнопки */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 20px; /* Минимальная ширина кнопки */
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Блок с трейдинг вью */
+#tradingView {
+    width: 100%;  /* Занимает всю ширину */
+    height: calc(100vh - 70px);  /* Растягиваем на всю высоту экрана */
+    margin-bottom: 70px;  /* Чтобы оставить место для кнопок */
+    display: none
+}
+
+/* Блок калькулятора (если он есть) */
+#calculator {
+    display: none;  /* Изначально скрыт, если переключаем на TradingView */
+}
+
+/* Контейнер для iframe */
+.tradingview-widget-container {
+    position: relative;
+    width: 100%;
+    max-width: 980px; /* Максимальная ширина */
+    height: 80vh; /* Высота относительно высоты экрана */
+}
+
+/* Стиль для самого iframe */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Подсветка только для активной кнопки */
+.button-container .btn.active {
+    background-color: #007bff; /* Синий фон */
+    color: white; /* Белый текст */
+    font-weight: bold;
 }
