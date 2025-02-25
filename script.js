@@ -65,6 +65,14 @@ let language = localStorage.getItem('language') || 'ru'; // Язык по умо
 function applyTheme(theme) {
     document.body.classList.toggle('dark-theme', theme === 'dark');
     localStorage.setItem('theme', theme);
+
+    // Изменяем тему на TradingView в iframe
+    const iframe = document.querySelector('#tradingView iframe');
+    if (iframe) {
+        const currentSrc = iframe.src;
+        const newSrc = currentSrc.replace(/theme=\w+/g, `theme=${theme}`);
+        iframe.src = newSrc;
+    }
     
     // Проверяем, существует ли элемент с id 'themeSwitch' перед изменением его состояния
     const themeSwitch = document.getElementById('themeSwitch');
@@ -157,11 +165,11 @@ function updateCurrencySymbol(symbol) {
     });
 }
 
-// Функция для выбора типа рынка (не влияет на калькулятор)
-function changeMarket(type) {
-    marketType = type;
-    localStorage.setItem('market', marketType);
-}
+// // Функция для выбора типа рынка (не влияет на калькулятор)
+// function changeMarket(type) {
+//     marketType = type;
+//     localStorage.setItem('market', marketType);
+// }
 
 // Слушатель для открытия/закрытия меню
 function toggleDropdown() {
@@ -263,3 +271,36 @@ document.getElementById("currencyJpy").addEventListener("click", () => changeCur
 
 // // Инициализация кнопки переключения темы
 // document.getElementById("themeSwitch").addEventListener("change", toggleTheme);
+
+// Переключение страниц
+// Получаем кнопки и блоки
+// Получаем кнопки для переключения
+const buttons = document.querySelectorAll('.button-container .btn');
+
+// Функция для переключения между калькулятором и TradingView
+function toggleView(view) {
+    const calculator = document.querySelector('.container');  // контейнер калькулятора
+    const tradingView = document.getElementById('tradingView');  // контейнер TradingView
+
+    if (view === 'calculator') {
+        calculator.style.display = 'block';
+        tradingView.style.display = 'none';
+    } else if (view === 'tradingView') {
+        calculator.style.display = 'none';
+        tradingView.style.display = 'block';
+    }
+}
+
+// Добавляем обработчики для кнопок
+buttons.forEach((button, index) => {
+    button.addEventListener('click', function () {
+        // Если кнопка 1, показываем калькулятор
+        if (index === 0) {
+            toggleView('calculator');
+        }
+        // Если кнопка 2, показываем TradingView
+        else if (index === 1) {
+            toggleView('tradingView');
+        }
+    });
+});
