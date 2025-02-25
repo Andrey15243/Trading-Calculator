@@ -304,3 +304,21 @@ buttons.forEach((button, index) => {
         }
     });
 });
+
+// Функция для переключения подменю
+function toggleSubmenu(submenuId) {
+    var submenu = document.getElementById(submenuId);
+    
+    // Скрыть все подменю
+    var allSubmenus = document.querySelectorAll('.submenu-content');
+    allSubmenus.forEach(function(item) {
+        item.style.display = "none";
+    });
+    
+    // Открыть или закрыть текущее подменю
+    if (submenu.style.display === "block") {
+        submenu.style.display = "none";  // Закрыть, если оно открыто
+    } else {
+        submenu.style.display = "block"; // Открыть, если оно закрыто
+    }
+}
