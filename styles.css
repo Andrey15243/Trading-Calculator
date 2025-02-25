@@ -387,6 +387,17 @@ input:checked + .slider .left-icon {
     display: block;
 }
 
+/* Для мобильных устройств, скрываем подменю по умолчанию и показываем его при клике */
+@media (max-width: 768px) {
+    .submenu-content {
+        display: none; /* По умолчанию скрыто */
+    }
+
+    .submenu.active .submenu-content {
+        display: block; /* Показываем при нажатии */
+    }
+}
+
 /* Подменю и его элементы в тёмной теме */
 body.dark-theme .submenu-content {
     display: none; /* Подменю по умолчанию скрыто */
@@ -531,3 +542,4 @@ iframe {
     color: white; /* Белый текст */
     font-weight: bold;
 }
+
