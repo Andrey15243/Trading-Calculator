@@ -64,7 +64,7 @@
         </div>
 
         <label id="depositLabel" data-lang="depositLabel">Депозит <span class="currency-symbol">₽</span>:</label>
-        <input type="number" id="deposit" placeholder="Какой у вас депозит ?" min="0">
+        <input inputmode="decimal" pattern="[0-9]*" id="deposit" placeholder="Какой у вас депозит ?" min="0">
         
         <label id="riskLabel" data-lang="riskLabel">Риск (% от депозита):</label>
         <input type="number" id="risk" placeholder="Введите риск (без знака %)" step="0.01" min="0">
