@@ -181,6 +181,9 @@ document.addEventListener("DOMContentLoaded", function () {
             this.value = this.value.replace(/,/g, '.'); // Заменяем запятые на точки
         });
     });
-    
+
+    if (navigator.userAgent.includes("Telegram")) {
+        document.body.classList.add("telegram-webview");
+    }
 
 });
