@@ -170,6 +170,9 @@ document.addEventListener("DOMContentLoaded", function () {
         position = null;
         longBtn.classList.remove("active");
         shortBtn.classList.remove("active");
+
+        // Удаляем депозит из LocalStorage, чтобы он не сохранялся
+        localStorage.removeItem("depoValue");
     });
 
     // Автоматическая замена запятой на точку в полях ввода
