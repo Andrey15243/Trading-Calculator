@@ -1,4 +1,8 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body {
@@ -14,6 +18,9 @@ body {
     -webkit-user-select: none;
     user-select: none;
     touch-action: manipulation; /* Запрещает двойной тап для зума */
+
+    /* Убирает перетягивание страницы */
+    /* overscroll-behavior: none; */
 }
 
 
@@ -229,6 +236,8 @@ input:focus {
     color: #a0a0a0;
     width: 300px;
     height: 40px;
+    padding-right: 80px;
+    padding-left: 10px;
     margin-right: 90px;
 }
 
@@ -243,7 +252,7 @@ input:focus {
     fill: #a0a0a0;
     width: 80px;
     height: 30px;
-    padding: 2px 8px 0 5px;
+    padding: 2px 25px 0 5px;
     /* display: flex;
     justify-content: center; */
     margin-left: 10px;
