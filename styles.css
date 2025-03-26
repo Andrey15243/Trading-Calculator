@@ -22,7 +22,7 @@ body {
     width: 100%;   /* Растягиваем на всю ширину */
     background-color: #404040;
     fill: #a0a0a0;     /* Цвет текста */
-    padding: 10px 60px 10px 0;    /* Отступы внутри */
+    padding: 4px 60px 3px 0;    /* Отступы внутри */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: flex-end;
@@ -45,13 +45,13 @@ body {
 }
 
 .setMenu.active {
-    transform: translateX(0);
+    transform: translateX(60%);
 }
 
 
 .back {
     fill: #a0a0a0;
-    margin-top: 10px;
+    margin-top: 1px;
     margin-left: 20px;
     rotate: 180deg;
 }
@@ -79,7 +79,7 @@ body {
     position: sticky;
     /* background-color: rgb(38, 38, 38); */
     width: 100%;
-    margin-top: 80px;
+    margin-top: 70px;
     margin-bottom: 80px;
     max-width: 350px;
     padding: 20px;
