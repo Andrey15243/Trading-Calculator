@@ -12,7 +12,6 @@ body {
     -webkit-user-select: none;
     user-select: none;
     touch-action: manipulation; /* Запрещает двойной тап для зума */
-    overscroll-behavior: none;  /* Убирает перетягивание страницы */
 }
 
 
