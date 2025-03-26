@@ -32,7 +32,7 @@ body {
     width: 100%;   /* Растягиваем на всю ширину */
     background-color: #404040;
     fill: #a0a0a0;     /* Цвет текста */
-    padding: 4px 60px 3px 0;    /* Отступы внутри */
+    padding: 4px 20px 3px 0;    /* Отступы внутри */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: flex-end;
