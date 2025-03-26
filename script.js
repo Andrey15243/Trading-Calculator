@@ -26,6 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // При загрузке делаем calcBtn активной
     calcBtn.classList.add("active");
 
+    // Восстанавливаем значение депозита при загрузке страницы
+    if (localStorage.getItem("depoValue")) {
+        depoInput.value = localStorage.getItem("depoValue");
+    }
+
+    // Следим за вводом и сохраняем значение депозита в LocalStorage
+    depoInput.addEventListener("input", function () {
+        localStorage.setItem("depoValue", this.value);
+    });
+
 
     // выподающее меню
     settings.addEventListener("click", function() {
@@ -152,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Функция сброса всех полей, кроме депозита
     resetBtn.addEventListener("click", function () {
+        depoInput.value = "";
         riskInput.value = "";
         entryInput.value = "";
         stoplossInput.value = "";
@@ -160,5 +171,13 @@ document.addEventListener("DOMContentLoaded", function () {
         longBtn.classList.remove("active");
         shortBtn.classList.remove("active");
     });
-});
 
+    // Автоматическая замена запятой на точку в полях ввода
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', function () {
+            this.value = this.value.replace(/,/g, '.'); // Заменяем запятые на точки
+        });
+    });
+    
+
+});
