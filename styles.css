@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #1b1b1b;
-    color: #a0a0a0;
+    color: #d0d0d0;
     -webkit-user-select: none;
     user-select: none;
     touch-action: manipulation; /* Запрещает двойной тап для зума */
@@ -88,7 +88,7 @@ body {
 .container {
     position: sticky;
     /* background-color: rgb(38, 38, 38); */
-    width: 100%;
+    width: 65%;
     margin-top: 70px;
     margin-bottom: 80px;
     max-width: 350px;
@@ -131,10 +131,6 @@ body {
     fill: #a0a0a0;
 }
 
-#long:active {
-    fill: #d4d4d4;
-}
-
 
 #short {
     margin: 0;
@@ -153,21 +149,27 @@ body {
     fill: #a0a0a0;
 }
 
+#long:active {
+    /* fill: #d4d4d4; */
+    fill: #707070;
+    background-color: #1c2b1d;
+}
+
 #short:active {
-    fill: #d4d4d4;
+    fill: #707070;
+    background-color: #3a2727;
 }
 
 #long.active {
-    background-color: #344e35;
+    background-color: #5a875b;
     fill: #d4d4d4;
-    box-shadow: 0 0 10px 0 #476a48;
+    box-shadow: 0 0 10px 0 #9ae59c81;
 }
 
 #short.active {
-    background-color: #644343;
+    background-color: #8f6060;
     fill: #d4d4d4;
-    box-shadow: 0 0 10px 0 #644343;
-
+    box-shadow: 0 0 10px 0 #dd939381;
 }
 
 
