@@ -230,4 +230,47 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    themeToggle.addEventListener("change", () => {
+        const newTheme = themeToggle.checked ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+    
+        // Пересоздаём виджет с новой темой
+        createTradingViewWidget(newTheme);
+    });
+    
+    // Функция пересоздания виджета
+    function createTradingViewWidget(theme) {
+        // Удаляем старый виджет
+        document.getElementById('tradingview-widget').innerHTML = '';
+    
+        new TradingView.widget({
+            "container_id": "tradingview-widget",
+            "width": "100%",
+            "height": "100%",
+            "symbol": "BYBIT:BTCUSDT",
+            "interval": "D",
+            "timezone": "Etc/UTC",
+            "theme": theme,  // Используем новую тему
+            "style": "1",
+            "locale": "ru",
+            "watchlist": ["BYBIT:BTCUSDT", "BYBIT:ETHUSDT"],
+            "hide_top_toolbar": false,
+            "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false,
+            "hide_side_toolbar": false,
+            "allow_symbol_change": true
+        });
+    }
+    
+    // При загрузке страницы создаём виджет с сохранённой темой
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        themeToggle.checked = savedTheme === "light";
+    
+        createTradingViewWidget(savedTheme);
+    });
+    
+
 });
