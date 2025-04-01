@@ -274,3 +274,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
 });
+
+document.addEventListener('touchmove', (event) => {
+  if (!event.target.closest('.scrollable')) {
+    event.preventDefault();
+  }
+}, { passive: false });
