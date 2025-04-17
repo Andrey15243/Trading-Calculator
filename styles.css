@@ -7,6 +7,7 @@
 html,
 body {
     font-family: 'Arial', sans-serif;
+    font-size: 18px;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -429,9 +430,9 @@ input:checked + .slider:before {
 
 /* Определяем CSS-переменные для тем */
 :root {
-    --bg-color: #101010;
+    --bg-color: #121212;
     --text-color: #ddd;
-    --border-color: #505050;
+    --border-color: #745544;
     --menu-bg: #404040;
     --input-bg: #202020;
     --btn-bg: #353535;
@@ -445,7 +446,7 @@ input:checked + .slider:before {
     --longShort-fill: #a0a0a0;
     --longShort-fillPush: #fff;
     --resultBox-Err: #e41818;
-    --moon-fill: #dddddd;
+    --moon-fill: #dddddd; 
     --sun-fill: #797979;
     --fill-calu: #606060;
     --fill-caluAct: #ddd;
