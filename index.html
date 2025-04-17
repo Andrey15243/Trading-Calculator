@@ -100,30 +100,40 @@
     <div id="tradingview-widget" class="trade">
         <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
         <script class="trader">
-            new TradingView.widget({
-                "container_id": "tradingview-widget",
-                "width": "100%",
-                "height": "100%",  // Вместо 500
-                "symbol": "BYBIT:BTCUSDT", // Тикер (можно заменить)
-                "interval": "D",         // Интервал (D — дневной)
-                "timezone": "Etc/UTC",
-                "theme": "dark",         // Тёмная тема
-                "style": "1",
-                "locale": "ru",
-                "watchlist": [           // Фильтр на криптовалюты и биржу ByBit
-                    "BYBIT:BTCUSDT",
-                    "BYBIT:ETHUSDT",
-                    "BYBIT:XRPUSDT",
-                    "BYBIT:SOLUSDT"
-                ],
-                "hide_top_toolbar": false,
-                "toolbar_bg": "#f1f3f6",
-                "enable_publishing": false,
-                "hide_side_toolbar": false,
-                "allow_symbol_change": true
+            // Этот скрипт будет запускаться при инициализации
+            function createTradingViewWidget(theme) {
+                new TradingView.widget({
+                    "container_id": "tradingview-widget",
+                    "width": "100%",
+                    "height": "100%",
+                    "symbol": "BYBIT:BTCUSDT",
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": theme,  // Тема будет динамически изменяться
+                    "style": "1",
+                    "locale": "ru",
+                    "watchlist": [
+                        "BYBIT:BTCUSDT",
+                        "BYBIT:ETHUSDT",
+                        "BYBIT:XRPUSDT",
+                        "BYBIT:SOLUSDT"
+                    ],
+                    "hide_top_toolbar": false,
+                    "toolbar_bg": "#f1f3f6",
+                    "enable_publishing": false,
+                    "hide_side_toolbar": false,
+                    "allow_symbol_change": true
+                });
+            }
+    
+            // При загрузке страницы получаем текущую тему и создаём виджет
+            document.addEventListener("DOMContentLoaded", function() {
+                const theme = document.documentElement.getAttribute("data-theme") || "dark"; // По умолчанию тёмная тема
+                createTradingViewWidget(theme);
             });
         </script>
     </div>
+    
     
 
     <div class="niz">
