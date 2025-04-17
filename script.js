@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     let position = null; // Выбранная позиция (long или short)
-
     // Новые переменные для двух разных состояний
     let menuSelection = null; // "btnCalulator" или "tradingView"
     let tradePosition = null; // "long" или "short"
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("tradingview-widget").style.display = "flex";
 
         // Добавляем фоновое изображение для body
-    document.body.style.backgroundImage = "url('./icons/NotLud.png')";
+    document.body.style.backgroundImage = "url('./icons/NotLud copy.png')";
     document.body.style.backgroundSize = "cover"; // Растягивает изображение на весь экран
     document.body.style.backgroundPosition = "center"; // Выравнивает по центру
     });
@@ -234,16 +233,31 @@ document.addEventListener("DOMContentLoaded", function () {
         const newTheme = themeToggle.checked ? "light" : "dark";
         document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
-    
+        
+        // Пересоздаём виджет с новой темой
+        createTradingViewWidget(newTheme);
+    });
+
+    // Получаем сохранённую тему из localStorage или используем дефолтную
+    const savedTheme = localStorage.getItem("theme") || "light"; // Светлая тема по умолчанию
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    themeToggle.checked = savedTheme === "light";
+
+    // Обработчик смены темы
+    themeToggle.addEventListener("change", () => {
+        const newTheme = themeToggle.checked ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+
         // Пересоздаём виджет с новой темой
         createTradingViewWidget(newTheme);
     });
     
-    // Функция пересоздания виджета
+    // Функция пересоздания виджета с новой темой
     function createTradingViewWidget(theme) {
-        // Удаляем старый виджет
-        document.getElementById('tradingview-widget').innerHTML = '';
-    
+        const widgetContainer = document.getElementById('tradingview-widget');
+        widgetContainer.innerHTML = '';  // Удаляем старый виджет
+
         new TradingView.widget({
             "container_id": "tradingview-widget",
             "width": "100%",
@@ -262,21 +276,17 @@ document.addEventListener("DOMContentLoaded", function () {
             "allow_symbol_change": true
         });
     }
+
+    // При изменении темы создаём виджет с новой темой
+    createTradingViewWidget(savedTheme);
     
-    // При загрузке страницы создаём виджет с сохранённой темой
+    // При загрузке страницы создаем виджет с сохраненной темой
     document.addEventListener("DOMContentLoaded", () => {
-        const savedTheme = localStorage.getItem("theme") || "dark";
+        const savedTheme = localStorage.getItem("theme") || "dark"; // Получаем сохраненную тему (по умолчанию темная)
         document.documentElement.setAttribute("data-theme", savedTheme);
         themeToggle.checked = savedTheme === "light";
-    
-        createTradingViewWidget(savedTheme);
-    });
-    
-
+        
+        // Проверяем и пересоздаем виджет с корректной темой
+        createTradingViewWidget(savedTheme); // Создаем виджет с сохраненной темой
+    });     
 });
-
-document.addEventListener('touchmove', (event) => {
-  if (!event.target.closest('.scrollable')) {
-    event.preventDefault();
-  }
-}, { passive: false });
